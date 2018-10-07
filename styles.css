@@ -3,3 +3,13 @@
   margin-right: auto;
   width: 1024px;
 }
+
+.image {
+  float: left;
+  margin-right: 30px;
+  background-image: url("photo.jpg");
+  background-size: 100%;
+  width: 239px;
+  height: 425px;
+  background-repeat: no-repeat
+}
