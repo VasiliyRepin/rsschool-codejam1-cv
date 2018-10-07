@@ -6,25 +6,28 @@
 
 .image {
   float: left;
+  width: 239px;
+  height: 425px;
   margin-right: 20px;
   margin-left: -10px;
   background-image: url("photo.jpg");
   background-size: 100%;
-  width: 239px;
-  height: 425px;
+
   background-repeat: no-repeat;
   position: relative;
 }
 
 ol {
+  margin-left: -20px;
   list-style-type: none;
   text-indent: 10px;
-  margin-left: -20px;
+
 }
 
 ul {
-  list-style-type: square;
   list-style-position: inside;
+  list-style-type: square;
+
 }
 
 ol > li {
