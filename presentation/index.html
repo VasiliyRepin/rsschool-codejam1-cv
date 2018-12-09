@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>HTTP / HTTPS / HTTP2</h1>
+				</section>
+				<section>
+					<section>
+						<h2>History</h2>
+					</section>
+					<section>
+						<img src="./img/CERN.png" alt="Collayder">
+					</section>
+					<section>
+						<img src="./img/cern_logo.gif" alt="Logo">
+					</section>
+					<section>
+						<img src="./img/enquire.jpg" alt="enquire">
+						<p>A screen in an ENQUIRE scheme</p>
+					</section>
+					<section>
+						<img src="./img/TimBL.jpg" alt="Tim Berners Lee">
+						<p>Tim Berners-Lee in 1994</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img src="./img/OSI.png" alt="OSI layer model">
+						<p>TCP/IP stack reference model</p>
+					</section>
+					<section>
+						<img src="./img/http-request-response-cycle.gif" alt="show me your home page">
+					</section>
+					<section>
+						<h3>What is the HTTP?</h3>
+						<p>HTTP is the basical protocol used by the WWW</p>
+					</section>
+					<section id="fragments">
+						<h2>Basic features:</h2>
+						<p class="fragment">Connectionless</p>
+						<p class="fragment">Media independed</p>
+						<p class="fragment">Statless</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img src="./img/versions.png" alt="versions">
+						<p>Versions of the HTTP</p>
+					</section>
+					<section>
+						<img src="./img/HTTP2.png" alt="HTTP2 in one slide">
+					</section>
+				</section>
+				<section>
+					<h2>What does it look like ?</h2>
+					<img src="img/streaming.gif" alt="Gif of streaming" alt="gif of streaming">
+				</section>
+				<section>
+					<h2>What does it look like ?</h2>
+					<img src="img/HTTP_ClientServerSystem.png" alt="How it works">
+				</section>
+				<section>
+					<img src="img/HTTP_RequestResponseMessages.png" alt="rq-resp-messgs">
+				</section>
+				<section>
+					<img src="img/wcp_0301.gif" alt="req-resp-model">
+				</section>
+					<section>
+						<section>
+						<h2>Request</h2>
+						<pre>
+							<code class="hljs" data-trim contenteditable>
+GET /docs/index.html HTTP/1.1
+Host: www.nowhere123.com
+Accept: image/gif, image/jpeg
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
+(blank line)
+							</code>
+						</pre>
+					</section>
+						<section>
+							<h2>Request consist of</h2>
+							<ol>
+								<li>Method</li>
+								<li>Uniform Resource Identifier (URI)</li>
+								<li>HTTP version minor/major</li>
+								<li>Header Fields</li>
+							</ol>
+							<pre>
+							<code class="hljs" data-trim contenteditable>
+GET /docs/index.html HTTP/1.1  // Method / URI / version
+Host: www.nowhere123.com
+Accept: image/gif, image/jpeg  // Request Header Fields
+Accept-Language: en-us         // Request Header Fields
+Accept-Encoding: gzip, deflate // Request Header Fields
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
+(blank line)
+							</code>
+						</pre>
+						</section>
+
+
+						<section>
+							<h2>First-line of the request:</h2>
+							<p> Method / URI / version</p>
+							<pre>
+								<code class="hljs" data-trim contenteditable>
+									GET /docs/index.html HTTP/1.1
+								</code></pre>
+							</pre>
+						</section>
+					</section>
+					<section>
+						<section>
+						<h2>Response</h2>
+						<pre>
+							<code class="hljs" data-trim contenteditable>
+HTTP/1.1 200 OK
+Date: Sun, 18 Oct 2009 08:56:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT
+ETag: "10000000565a5-2c-3e94b66c2e680"
+Accept-Ranges: bytes
+Content-Length: 44
+Connection: close
+Content-Type: text/html
+X-Pad: avoid browser bug
+
+<html><body><h1>It works!</h1></body></html>
+							</code>
+						</pre>
+					</section>
+						<section>
+							<h2>Responses consist of</h2>
+							<ul>
+								<li>The version of the HTTP protocol they follow.</li>
+								<li>A status code</li>
+								<li>A status message</li>
+								<li>HTTP headers</li>
+								<li><b>Optionally</b> a body containing resourse</li>
+							</ul>
+						</section>
+
+
+
+						<section>
+							<h2>Status code</h2>
+							<ul>
+								<li>1xx (Informational): Request received, server is continuing the process.</li>
+								<li>2xx (Success): The request was successfully received, understood, accepted and serviced.</li>
+								<li>3xx (Redirection): Further action must be taken in order to complete the request.</li>
+								<li>4xx (Client Error): The request contains bad syntax or cannot be understood.</li>
+								<li>5xx (Server Error): The server failed to fulfill an apparently valid request.</li>
+							</ul>
+						</section>
+						<section id="fragment">
+							<h2>Status code: 404</h2>
+							<p class="fragment">Page not found</p>
+							<img src="./img/404-error.jpg" alt="404">
+						</section>
+					</section>
+				<section>
+					<h2>Request Method:</h2>
+					<p>GET</p>
+					<p>HEAD</p>
+					<p>POST</p>
+					<p>PUT</p>
+					<p>DELETE</p>
+					<p>CONNECT</p>
+					<p>OPTIONS</p>
+					<p>TRACE</p>
+				</section>
+				<section>
+					<h2>Request Method:</h2>
+					<p class="fragment grow"><span class="fragment highlight-green">GET:</span> is used to retrieve information from the given server using a given URI. </p>
+					<p class="fragment grow"><span class="fragment highlight-green">POST:</span> is used to send data to the server, using HTML forms.</p>
+					<p class="fragment grow"><span class="fragment highlight-green">PUT:</span> Replaces all the current representations of the target resource with the uploaded content.</p>
+					<p class="fragment grow"><span class="fragment highlight-green">DELETE:</span> Removes all the current representations of the target resource given by URI. </p>
+				</section>
+				<section>
+					<h2>Keep alive connection</h2>
+					<pre><code class="hljs" data-trim contenteditable>
+						GET /test.html HTTP/1.0
+						Connection: Keep-Alive
+						(blank line)
+					</code></pre>
+					<pre><code class="hljs" data-trim contenteditable>
+						HTTP/1.1 <b>200 OK</b>
+						Date: Sun, 18 Oct 2009 10:47:06 GMT
+						Server: Apache/2.2.14 (Win32)
+						Last-Modified: Sat, 20 Nov 2004 07:16:26 GMT
+						ETag: "10000000565a5-2c-3e94b66c2e680"
+						Accept-Ranges: bytes
+						Content-Length: 44
+						<b>Keep-Alive: timeout=5, max=100
+							Connection: Keep-Alive</b>
+						Content-Type: text/html
+
+						<html><body><h1>It works!</h1></body></html>
+					</code></pre>
+				</section>
+				<section>
+					<h2>keep-alive connection</h2>
+					<p>is <ins>one</ins> instead of <ins>many</ins> connections</p>
+					<img src="./img/keep-alive.png" alt="keep-alive">
+				</section>
+				<!--   <section>
+					<h2>Cookies</h2>
+					<ul>
+						<li>Session cookie</li>
+						<li>Persistant cookie</li>
+						<li>Secure cookie</li>
+					</ul>
+				</section>
+				<section>
+					<h2>How to set cookie?</h2>
+					<ol>
+						<li>Javascript</li>
+						<li>Response</li>
+						<li>Plugins</li>
+						<li>Manually</li>
+						<li>Meta tag HTML</li>
+					</ol>
+				</section> -->
+				<section>
+					<section>
+						<h2>HTTPS is</h2>
+						<p>Secure version of HTTP</p>
+						<b>Uses:</b>
+						<p>To protect transactions (banking, shopping...)</p>
+						<img src="./img/http-https.png" alt="https">
+					</section>
+					<section>
+						<h2>HTTPS is</h2>
+						<p>encrypted</p>
+						<p>using TLS or SSL</p>
+						<img src="./img/http_to_https-1.jpg" alt="http-to-https">
+					</section>
+					<section>
+						<img src="./img/SSL-flowchart.png" alt="SSL">
+					</section>
+					<section>
+						<img src="./img/public-key.jpg" alt="About Keys">
+					</section>
+					<section>
+						<img src="img/encryption.gif" alt="About Encrryption keys">
+					</section>
+					<section>
+						<img src="img/http-vs-https.png" alt="vs">
+					</section>
+					<section>
+						<h2>Thanks for watching!!!</h2>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+
+                controls: true,
+                progress: true,
+                history: true,
+
+                transition: 'convex',
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
